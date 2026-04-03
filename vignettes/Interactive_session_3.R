@@ -402,7 +402,7 @@ p_pop <- ggplot() +
     )
 
 ggsave(file.path(out_dir, "lv_mcmc_population_fit_ci.png"),
-       p_pop, width = 10, height = 6, dpi = 160, bg = "white")
+       p_pop, width = 10, height = 6, dpi = 300, bg = "white")
 message("Saved population fit CI to ", out_dir)
 
 # ---- Posterior density ----
@@ -416,8 +416,8 @@ p_pooled <- ggplot(long_post, aes(x = value)) +
     facet_wrap(~parameter, scales = "free_y", ncol = 2) +
     coord_cartesian(xlim = c(0, 2)) +
     labs(x = NULL, y = "Density") +
-    theme_bw(base_size = 13)
+    theme_bw(base_size = 20)
 
 ggsave(file.path(out_dir, "lv_mcmc_posterior_pooled.png"),
-       p_pooled, width = 6, height = 4, dpi = 300, bg = "white")
+       p_pooled, width = 10, height = 6, dpi = 300, bg = "white")
 message("Saved pooled posterior density to ", out_dir)

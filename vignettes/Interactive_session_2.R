@@ -153,7 +153,7 @@ ggsave(
     plot = p_fit,
     width = 10,
     height = 6,
-    dpi = 160,
+    dpi = 300,
     bg = "white"
 )
 message("Saved fit plot: ", plot_path)
@@ -178,12 +178,12 @@ p_pe <- ggplot(long_pe, aes(x = value)) +
     facet_wrap(~parameter, scales = "free_y", ncol = 2) +
     coord_cartesian(xlim = c(0, 2)) +
     labs(x = NULL, y = "Point estimate") +
-    theme_bw(base_size = 13) +
+    theme_bw(base_size = 20) +
     theme(
         axis.text.y  = element_blank(),
         panel.grid   = element_blank()
     )
 
 ggsave(file.path(out_dir, "lv_random_search_point_estimate.png"),
-       p_pe, width = 6, height = 4, dpi = 300, bg = "white")
+       p_pe, width = 10, height = 6, dpi = 300, bg = "white")
 message("Saved point estimate plot to ", out_dir)

@@ -294,7 +294,7 @@ p_pop <- ggplot() +
     )
 
 ggsave(file.path(out_dir, "lv_abc_rejection_population_fit_ci.png"),
-       p_pop, width = 10, height = 6, dpi = 160, bg = "white")
+       p_pop, width = 10, height = 6, dpi = 300, bg = "white")
 
 # ---- Posterior density ----
 long_post <- do.call(rbind, lapply(par_names, function(pn) {
@@ -307,8 +307,8 @@ p_den <- ggplot(long_post, aes(x = value)) +
     facet_wrap(~parameter, scales = "free_y", ncol = 2) +
     coord_cartesian(xlim = c(0, 2)) +
     labs(x = NULL, y = "Density") +
-    theme_bw(base_size = 13)
+    theme_bw(base_size = 20)
 
 ggsave(file.path(out_dir, "lv_abc_rejection_density.png"),
-       p_den, width = 6, height = 4, dpi = 300, bg = "white")
+       p_den, width = 10, height = 6, dpi = 300, bg = "white")
 message("Saved population fit + density plots to ", out_dir)
