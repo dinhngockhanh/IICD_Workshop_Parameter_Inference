@@ -1,0 +1,24 @@
+Package: IICD_Workshop_Parameter_Inference
+Title: IICD Workshop Parameter Inference
+Version: 0.1.0
+Authors@R: 
+    person("Khanh", "Dinh", role = c("aut", "cre"),
+           email = "knd2127@columbia.edu")
+Description: Coding materials for
+    Parameter Estimation Workshop - Parameter Inference Approaches for Data-Driven Mathematical Modeling.
+License: MIT + file LICENSE
+Depends:
+    R (>= 4.0.0)
+Imports:
+    abcsmcrf,
+    deSolve,
+    ggplot2
+Suggests:
+    data.table,
+    EasyABC,
+    parallel,
+    pbapply,
+    truncnorm
+Remotes:
+    dinhngockhanh/abcsmcrf
+Encoding: UTF-8

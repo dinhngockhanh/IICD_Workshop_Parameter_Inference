@@ -81,7 +81,8 @@ predicted_populations <- lapply(1:nrow(accepted_parameters), function(i) {
 })
 predicted_populations <- do.call(rbind, predicted_populations)
 predicted_populations_mean <- aggregate(cbind(rabbit, fox) ~ time, data = predicted_populations, FUN = mean)
-predicted_populations_sd <- aggregate(cbind(rabbit, fox) ~ time, data = predicted_populations, FUN = sd)
+predicted_populations_CI_low <- aggregate(cbind(rabbit, fox) ~ time, data = predicted_populations, FUN = function(x) quantile(x, 0.025))
+predicted_populations_CI_high <- aggregate(cbind(rabbit, fox) ~ time, data = predicted_populations, FUN = function(x) quantile(x, 0.975))
 #-----------------------------------------------------------------------Plot fitted & observed population dynamics
 color_rabbit <- "#EFC000"
 color_fox <- "#BC3C29"
@@ -91,8 +92,8 @@ obs_df <- rbind(
 )
 obs_df$species <- factor(obs_df$species, levels = c("Rabbit", "Fox"))
 fit_ranges_df <- rbind(
-    data.frame(species = "Rabbit", time = predicted_populations_mean$time, lo = predicted_populations_mean$rabbit - 1.96 * predicted_populations_sd$rabbit, hi = predicted_populations_mean$rabbit + 1.96 * predicted_populations_sd$rabbit),
-    data.frame(species = "Fox", time = predicted_populations_mean$time, lo = predicted_populations_mean$fox - 1.96 * predicted_populations_sd$fox, hi = predicted_populations_mean$fox + 1.96 * predicted_populations_sd$fox)
+    data.frame(species = "Rabbit", time = predicted_populations_mean$time, lo = predicted_populations_CI_low$rabbit, hi = predicted_populations_CI_high$rabbit),
+    data.frame(species = "Fox", time = predicted_populations_mean$time, lo = predicted_populations_CI_low$fox, hi = predicted_populations_CI_high$fox)
 )
 fit_ranges_df$species <- factor(fit_ranges_df$species, levels = c("Rabbit", "Fox"))
 fit_df <- rbind(
